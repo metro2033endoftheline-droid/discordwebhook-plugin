@@ -15,7 +15,7 @@ public class DiscordWebhookPlugin extends JavaPlugin {
     //  Mets ton URL de webhook Discord ici (entre les guillemets)
     // ============================================================
     private static final String WEBHOOK_URL =
-            "https://discord.com/api/webhooks/1521915130395496552/Fd1KkNBWoW8TWUbWXnqsJX-UG6cKTMyegLzUQxiWBNXJNWtkCNBMvciQl5P16MtWCXJY";
+            "https://discord.com/api/webhooks/1523263274924114044/XTH0rStpENVhjb1MgUs1K0CJ5NOwTeo3dSt94fa9B9hthSlrHEYOFVeVKEXUBHlgF4EK";
 
     @Override
     public void onEnable() {
