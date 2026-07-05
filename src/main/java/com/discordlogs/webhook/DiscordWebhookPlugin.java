@@ -69,6 +69,7 @@ public class DiscordWebhookPlugin extends JavaPlugin {
             conn.setConnectTimeout(5000);
             conn.setReadTimeout(5000);
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setRequestProperty("User-Agent", "DiscordWebhookPlugin (https://github.com, 1.0)");
 
             try (OutputStream out = conn.getOutputStream()) {
                 out.write(json.getBytes(StandardCharsets.UTF_8));
@@ -77,7 +78,20 @@ public class DiscordWebhookPlugin extends JavaPlugin {
 
             int responseCode = conn.getResponseCode();
             if (responseCode >= 300) {
-                getLogger().warning("Discord webhook a repondu avec le code " + responseCode);
+                String errorBody = "";
+                try (java.io.InputStream errStream = conn.getErrorStream()) {
+                    if (errStream != null) {
+                        java.io.ByteArrayOutputStream result = new java.io.ByteArrayOutputStream();
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = errStream.read(buffer)) != -1) {
+                            result.write(buffer, 0, length);
+                        }
+                        errorBody = result.toString("UTF-8");
+                    }
+                } catch (Exception ignored) {
+                }
+                getLogger().warning("Discord webhook a repondu avec le code " + responseCode + " : " + errorBody);
             }
 
             conn.disconnect();
