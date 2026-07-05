@@ -1,0 +1,17 @@
+name: DiscordWebhookPlugin
+version: '1.0.0'
+main: com.discordlogs.webhook.DiscordWebhookPlugin
+api-version: 1.12
+description: Envoie des messages vers un webhook Discord via la commande /dwebhook
+author: Diakov59
+
+commands:
+  dwebhook:
+    description: Envoie un message au webhook Discord configure
+    usage: /dwebhook <message>
+    permission: discordwebhook.use
+
+permissions:
+  discordwebhook.use:
+    description: Autorise l'utilisation de /dwebhook
+    default: op
